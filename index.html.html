@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Grand Magical Surprise For Sheeb ✨</title>
+  
+  <!-- Confetti Particle Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at 50% 30%, #2b0b18 0%, #15030b 50%, #0a0105 100%);
+      --card-bg: rgba(20, 5, 12, 0.55);
+      --card-border: rgba(247, 215, 136, 0.45);
+      --accent-gold: #f5d07a;
+      --accent-gold-glow: rgba(245, 208, 122, 0.7);
+      --accent-rose: #e63956;
+      --accent-pink: #ff758f;
+      --text-main: #ffffff;
+      --text-sub: #fce4ec;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'Noto Nastaliq Urdu', serif, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -15%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(230, 57, 86, 0.25) 0%, rgba(245, 208, 122, 0.12) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(70px);
+    }
+
+    .bg-decorations {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .real-element {
+      position: absolute;
+      bottom: -150px;
+      user-select: none;
+      animation: naturalFloat linear infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes naturalFloat {
+      0% { transform: translateY(0) translateX(0) rotate(0deg) scale(0.85); opacity: 0; }
+      15% { opacity: var(--max-opacity, 0.9); }
+      85% { opacity: var(--max-opacity, 0.9); }
+      100% { transform: translateY(-125vh) translateX(var(--sway-distance, 50px)) rotate(var(--sway-rotation, 250deg)) scale(1.15); opacity: 0; }
+    }
+
+    /* Grand Opening Burst Overlay */
+    .grand-burst-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 300;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .opening-heart-sparks {
+      font-size: 110px;
+      color: var(--accent-gold);
+      text-shadow: 0 0 50px var(--accent-pink), 0 0 100px var(--accent-gold);
+      animation: grandHeartExplode 1.8s ease-out forwards;
+      display: none;
+    }
+
+    @keyframes grandHeartExplode {
+      0% { transform: scale(0.1) rotate(0deg); opacity: 0; filter: blur(10px); }
+      50% { transform: scale(1.4) rotate(15deg); opacity: 1; filter: blur(0px); }
+      100% { transform: scale(2.2) rotate(0deg); opacity: 0; filter: blur(20px); }
+    }
+
+    .music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--card-border);
+      color: var(--accent-gold);
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .music-btn:hover {
+      background: linear-gradient(135deg, rgba(230, 57, 86, 0.5), rgba(245, 208, 122, 0.5));
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .visualizer { display: flex; align-items: flex-end; gap: 3px; height: 16px; }
+    .visualizer .bar { width: 3px; height: 4px; background: var(--accent-gold); border-radius: 2px; }
+    .visualizer.playing .bar { animation: soundWave 0.8s ease-in-out infinite alternate; }
+    .visualizer.playing .bar:nth-child(1) { animation-delay: 0.1s; }
+    .visualizer.playing .bar:nth-child(2) { animation-delay: 0.3s; }
+    .visualizer.playing .bar:nth-child(3) { animation-delay: 0.2s; }
+    .visualizer.playing .bar:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes soundWave { 0% { height: 4px; } 100% { height: 16px; background: var(--accent-pink); } }
+
+    .card {
+      width: 95%;
+      max-width: 920px;
+      min-height: 85vh;
+      padding: 35px 25px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid var(--card-border);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .step {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px) scale(0.98);
+      transition: all 0.5s ease-out;
+      width: 100%;
+    }
+
+    .step.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .lock-avatar-wrapper {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+      background: radial-gradient(circle, #e63956, #800e24);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 0 30px rgba(230, 57, 86, 0.7);
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px rgba(230, 57, 86, 0.4); }
+      100% { box-shadow: 0 0 35px var(--accent-gold-glow); }
+    }
+
+    .lock-avatar-wrapper i { font-size: 38px; color: #fff; }
+
+    .passcode-input {
+      width: 250px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1.5px solid var(--accent-gold);
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 24px;
+      text-align: center;
+      letter-spacing: 6px;
+      margin: 20px auto 12px;
+      outline: none;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+      transition: all 0.3s;
+      display: block;
+    }
+
+    .passcode-input:focus {
+      border-color: var(--accent-pink);
+      box-shadow: 0 0 20px rgba(255, 117, 143, 0.7);
+    }
+
+    .error-msg {
+      color: #ff4d6d;
+      font-size: 14px;
+      display: none;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .countdown-box { margin: 25px auto; display: flex; justify-content: center; align-items: center; }
+
+    .timer-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--accent-gold);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 35px var(--accent-gold-glow);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      font-weight: bold;
+      color: #fff;
+      animation: timerPulse 1s infinite alternate;
+    }
+
+    @keyframes timerPulse { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+
+    h1 {
+      font-size: 24px;
+      color: var(--accent-gold);
+      margin-bottom: 18px;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    }
+
+    .typewriter-text {
+      font-size: 17px;
+      line-height: 2.1;
+      color: var(--text-sub);
+      min-height: 60px;
+      margin-bottom: 20px;
+      text-align: center;
+      direction: rtl;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #e63956, #c1121f);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(230, 57, 86, 0.5);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      box-shadow: none;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #ff4d6d, #e63956);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(230, 57, 86, 0.8);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
+      margin: 15px 0;
+      max-height: 440px;
+      overflow-y: auto;
+      padding: 5px;
+    }
+
+    .gallery-grid::-webkit-scrollbar { width: 5px; }
+    .gallery-grid::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+
+    .gallery-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid var(--card-border);
+      height: 150px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-card:hover { transform: scale(1.05); border-color: var(--accent-gold); box-shadow: 0 10px 25px var(--accent-gold-glow); }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
+
+    .multi-video-wrapper {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 16px;
+    }
+
+    .video-container {
+      flex: 1 1 260px; max-width: 100%; height: 280px; border-radius: 20px;
+      overflow: hidden; border: 1.5px solid var(--card-border);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.8); background: #000; transition: transform 0.3s;
+    }
+
+    .video-container video { width: 100%; height: 100%; object-fit: contain; }
+
+    .long-message-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px;
+      max-height: 380px;
+      overflow-y: auto;
+      text-align: right;
+      direction: rtl;
+      margin-bottom: 15px;
+    }
+
+    .long-message-box::-webkit-scrollbar { width: 5px; }
+    .long-message-box::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+
+    .inline-img-frame {
+      width: 100%; max-width: 280px; height: 180px; margin: 15px auto;
+      border-radius: 15px; overflow: hidden; border: 2px solid var(--accent-gold);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    .inline-img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Interactive Birthday Cake Styles */
+    .cake-wrapper {
+      position: relative;
+      width: 240px;
+      height: 200px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .cake-base {
+      width: 200px;
+      height: 90px;
+      background: linear-gradient(to right, #ff758f, #e63956);
+      border-radius: 15px 15px 10px 10px;
+      border: 3px solid var(--accent-gold);
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .cake-top {
+      width: 150px;
+      height: 60px;
+      background: linear-gradient(to right, #fff0f5, #ffb3c1);
+      border-radius: 15px 15px 0 0;
+      border: 3px solid var(--accent-gold);
+      border-bottom: none;
+      position: relative;
+    }
+
+    .candles-container {
+      display: flex;
+      gap: 20px;
+      position: absolute;
+      top: -35px;
+    }
+
+    .candle {
+      width: 12px;
+      height: 35px;
+      background: repeating-linear-gradient(45deg, #f5d07a, #f5d07a 5px, #ffffff 5px, #ffffff 10px);
+      border-radius: 3px;
+      position: relative;
+    }
+
+    .flame {
+      width: 12px;
+      height: 18px;
+      background: radial-gradient(circle, #ffea00 0%, #ff4d00 80%);
+      border-radius: 50% 50% 20% 20%;
+      position: absolute;
+      top: -18px;
+      left: 0;
+      box-shadow: 0 0 15px #ffea00;
+      animation: flameFlicker 0.6s infinite alternate;
+      transition: opacity 0.5s ease;
+    }
+
+    .flame.off { opacity: 0; animation: none; }
+
+    @keyframes flameFlicker {
+      0% { transform: scale(1) rotate(-2deg); }
+      100% { transform: scale(1.15) rotate(2deg); }
+    }
+
+    .cake-slice-line {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: rgba(255,255,255,0.8);
+      left: 50%;
+      top: 0;
+      display: none;
+    }
+
+    .dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.25); transition: all 0.3s; }
+    .dot.active { background: var(--accent-gold); width: 24px; border-radius: 10px; box-shadow: 0 0 10px var(--accent-gold); }
+
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);
+      z-index: 200; display: none; justify-content: center; align-items: center;
+    }
+
+    .modal-content {
+      background: var(--bg-gradient); border: 1.5px solid var(--accent-gold);
+      width: 90%; max-width: 650px; max-height: 80vh; border-radius: 25px;
+      padding: 25px; overflow-y: auto; text-align: right; direction: rtl; color: #fff;
+      box-shadow: 0 0 40px var(--accent-gold-glow);
+    }
+
+    .modal-content::-webkit-scrollbar { width: 5px; }
+    .modal-content::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+
+    .click-heart {
+      position: absolute; font-size: 24px; color: var(--accent-pink);
+      pointer-events: none; animation: floatUp 1s ease-out forwards; z-index: 999;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-80px) scale(1.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body onclick="createClickHeart(event)">
+
+  <div class="bg-decorations" id="bgDecorations"></div>
+
+  <!-- Grand Spark Opening Overlay -->
+  <div class="grand-burst-overlay">
+    <div class="opening-heart-sparks" id="grandSparkHeart">💖✨</div>
+  </div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="images/khat song.mp3.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-btn" id="musicBtn" onclick="toggleMusic(); event.stopPropagation();">
+    <div class="visualizer" id="visualizer">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+    <i class="fa-solid fa-music"></i> <span id="musicText">Music: OFF</span>
+  </button>
+
+  <div class="card" onclick="event.stopPropagation();">
+
+    <!-- Step 1: Lock Screen -->
+    <div class="step active" id="step-1">
+      <div class="lock-avatar-wrapper">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <h1>✨ Secret Gateway to My Heart 🔐💖</h1>
+      <p style="color: var(--text-sub); margin-bottom: 10px;">میری جان، یہاں صرف ہمارا خاص پاس ورڈ لگے گا 🗝️ شاباش صحیح کوڈ لگائیں 💖</p>
+      
+      <input type="password" id="passcode" class="passcode-input" placeholder="••••••••" maxlength="8" onkeydown="if(event.key==='Enter') checkPasscode()">
+      <div id="error-msg" class="error-msg">ارے میری پیاری نادان جان! غلط کوڈ ہے 🥺 سوچیں اور صحیح پاس ورڈ لگائیں! 💡🤍</div>
+      
+      <div class="btn-container">
+        <button class="btn" onclick="checkPasscode()">Unlock Surprise From your husband Noman 🔓✨</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Countdown Step -->
+    <div class="step" id="step-2">
+      <div style="font-size: 35px; margin-bottom: 10px;">✨</div>
+      <h1>Get Ready My Love!</h1>
+      <p style="color: var(--text-sub);">سرپرائز شروع ہونے میں بس چند سیکنڈ باقی ہیں... ❤️</p>
+      
+      <div class="countdown-box">
+        <div class="timer-circle" id="timer-number">5</div>
+      </div>
+
+      <div class="typewriter-text">تھوڑا سا انتظار کریں میری جان... 🌹</div>
+    </div>
+
+    <!-- Step 3: Birthday Intro -->
+    <div class="step" id="step-3">
+      <div style="font-size: 40px; margin-bottom: 10px;">🌹✨</div>
+      <h1>🎉 Happy Birthday To My Whole Universe, Meri Jannat!</h1>
+      
+      <div class="multi-video-wrapper">
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-09 at 03.13.19.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-10 at 21.28.57.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="typewriter-text" id="typewriter-3"></div>
+      <div class="btn-container">
+        <button class="btn" onclick="nextStep(4)">میرا سرپرائز دیکھنے کے لیے آگے بڑھیں ➔</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Photo Gallery 1 -->
+    <div class="step" id="step-4">
+      <h1> Tashweeb, these are our beautiful memories. Ahaaaaaaaa 🌹</h1>
+      <div class="gallery-grid">
+        <div class="gallery-card"><img src="images/masti.jpeg" alt="Memory 1"></div>
+        <div class="gallery-card"><img src="images/paaray.png" alt="Memory 2"></div>
+        <div class="gallery-card"><img src="images/mal.png" alt="Memory 3"></div>
+        <div class="gallery-card"><img src="images/kisa.png" alt="Memory 4"></div>
+        <div class="gallery-card"><img src="images/head.png" alt="Memory 5"></div>
+        <div class="gallery-card"><img src="images/ummah.png" alt="Memory 6"></div>
+        <div class="gallery-card"><img src="images/haoiring.png" alt="Memory 7"></div>
+        <div class="gallery-card"><img src="images/hamnds.png" alt="Memory 8"></div>
+        <div class="gallery-card"><img src="images/ummhi.png" alt="Memory 9"></div>
+        <div class="gallery-card"><img src="images/yara.png" alt="Memory 10"></div>
+      </div>
+      <div class="typewriter-text" id="typewriter-4"></div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="nextStep(3)">⬅ پیچھے جائیں</button>
+        <button class="btn" onclick="nextStep(5)">Click here darling ➔</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Photo Gallery 2 -->
+    <div class="step" id="step-5">
+      <h1>🌺 Where my whole World begins & ends, it is you TASHWEEB</h1>
+      <div class="gallery-grid">
+        <div class="gallery-card"><img src="images/haedi..png" alt="Memory 1"></div>
+        <div class="gallery-card"><img src="images/ummhi.png" alt="Memory 2"></div>
+        <div class="gallery-card"><img src="images/yara.png" alt="Memory 3"></div>
+        <div class="gallery-card"><img src="images/ahaa.png" alt="Memory 4"></div>
+        <div class="gallery-card"><img src="images/sit.png" alt="Memory 5"></div>
+        <div class="gallery-card"><img src="images/sheeb1.png" alt="Memory 6"></div>
+        <div class="gallery-card"><img src="images/sheeb2.png" alt="Memory 7"></div>
+        <div class="gallery-card"><img src="images/sheeb3.png" alt="Memory 8"></div>
+        <div class="gallery-card"><img src="images/sheeb4.png" alt="Memory 9"></div>
+        <div class="gallery-card"><img src="images/malli.png" alt="Memory 10"></div>
+      </div>
+      <div class="typewriter-text" id="typewriter-5"></div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="nextStep(4)">⬅ پیچھے جائیں</button>
+        <button class="btn" onclick="nextStep(6)">Click here to watch special videos ➔</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Special Videos -->
+    <div class="step" id="step-6">
+      <h1> Our Special Videos Sheeb , my birthday girl,bagham💖</h1>
+      
+      <div class="multi-video-wrapper">
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-08 at 22.49.29.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-10 at 18.48.37.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="typewriter-text" id="typewriter-6"></div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="nextStep(5)">⬅ پیچھے جائیں</button>
+        <button class="btn" onclick="nextStep(7)">My sweet sweet naughty naughty baby click here ➔</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Special Video Memory 2 -->
+    <div class="step" id="step-7">
+      <h1> Special Videos jan </h1>
+      <div class="multi-video-wrapper">
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-10 at 21.28.51.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <video class="sync-video" controls>
+            <source src="images/WhatsApp Video 2026-08-09 at 03.18.39.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="typewriter-text" id="typewriter-7"></div>
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="nextStep(6)">⬅ پیچھے جائیں</button>
+        <button class="btn" onclick="nextStep(8)">Now, some lines from me. Plz accept them. ➔</button>
+      </div>
+    </div>
+
+    <!-- Step 8: Final Letter -->
+    <div class="step" id="step-8">
+      <div style="font-size: 40px; margin-bottom: 5px;">💖✨👑</div>
+      <h1>🌺 My Heartfelt Wishes & Secret Letter For You 🌺</h1>
+      
+      <div class="long-message-box">
+        <div id="line-by-line-container"></div>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="nextStep(7)">⬅ پیچھے جائیں</button>
+        <button class="btn" onclick="openModal()">Some lines for you JAN.Click here❤️</button>
+        <button class="btn" onclick="nextStep(9)">Proceed to Cake Cutting Ceremony 🎂➔</button>
+      </div>
+    </div>
+
+    <!-- Step 9: Cake Cutting Ceremony Step -->
+    <div class="step" id="step-9">
+      <div style="font-size: 35px; margin-bottom: 5px;">🎂✨🎉</div>
+      <h1>Happy Birthday Cake Ceremony!</h1>
+      <p style="color: var(--text-sub);" id="cakeStatusText">سب سے پہلے کینڈلز بجھائیں اور پھر کیک کاٹیں میری جان! 🕯️🎂</p>
+
+      <div class="cake-wrapper">
+        <div class="candles-container">
+          <div class="candle"><div class="flame" id="flame1"></div></div>
+          <div class="candle"><div class="flame" id="flame2"></div></div>
+          <div class="candle"><div class="flame" id="flame3"></div></div>
+        </div>
+        <div class="cake-top"></div>
+        <div class="cake-base">
+          <div class="cake-slice-line" id="sliceLine"></div>
+        </div>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn btn-secondary" onclick="blowCandles()">Blow Candles 🌬️🕯️</button>
+        <button class="btn" onclick="cutCake()">Cut Birthday Cake 🔪🎂</button>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button class="btn" style="background: linear-gradient(135deg, #f5d07a, #e63956); color:#000;" onclick="finalCelebrate()">Send Heartfelt Love & Fireworks 💕✨</button>
+      </div>
+    </div>
+
+    <!-- Dots Indicator -->
+    <div class="dots">
+      <div class="dot active" id="dot-1"></div>
+      <div class="dot" id="dot-2"></div>
+      <div class="dot" id="dot-3"></div>
+      <div class="dot" id="dot-4"></div>
+      <div class="dot" id="dot-5"></div>
+      <div class="dot" id="dot-6"></div>
+      <div class="dot" id="dot-7"></div>
+      <div class="dot" id="dot-8"></div>
+      <div class="dot" id="dot-9"></div>
+    </div>
+
+  </div>
+
+  <!-- Custom Letter Modal Box -->
+  <div class="modal-overlay" id="letterModal">
+    <div class="modal-content">
+      <h2 style="color: var(--accent-gold); margin-bottom: 15px; text-align: center;"> 😚Letter for my bagham TASHWEEB💖</h2>
+      <p style="line-height: 2.2; font-size: 16px;">
+        Tashweeb bagham 💏<br>
+        Jis din say ap mujay milin mara aik aik pall intihaai shaandaar ban gia hai❤️ Mujy jab b koi pareshani ati foran apko btaata or mujy us pareshani ka Hall mil jaata. Ap maray har dukh mari har museebat main muj sa barh kar mari help krti ho.🤝 By God ap nay mari zindghi ko khushion say bharr deeia.👩‍❤️‍👨Koi b moka ho ap hmesha mujy khush rkhtin. Mari pasand, nah pasand ka hmesha khail rkhtin😚<br><br>
+
+        Tashweeb <br>
+        Main aksar ap ko hurt kr deta. Mujy maaf krna main hmesha ab apko happy rkhny ki koshish kron ga😌 <br><br>
+
+        Tashweeb 💏<br>
+        Zindghi ka koi pall koi khushi koi ghamm , main sab kuch apkay sath dakhna chahta. Tashweeb tuu mara bacha mara sona babo hai. Mara kaka hai😭Mujy tery sath rhna bassssssssss😭 <br><br>
+        شاموں میں بہتریں ہے تری گفتگو کی شام ! <br>
+        صبحوں میں معتبر تری صبحوں کا ذکر ہے ! <br>
+        تو آخری خیال ہے سونے سے پیشتر ! <br>
+        اور جاگنے کے بعد مری پہلی فکر ہے !!! <br><br>
+
+        Mujy bas bas bas bas bas bas bas bas bas bas bas bas bas bas bas bas or basssssssssssss Tashweeb chahia👩‍❤️‍👨 <br><br>
+        تو جو مل جائے تو تقدیر نگوں ہو جائے 🤲🏻❤️<br><br>
+
+        Tashweeb babo<br>
+        Is relation main hum 2 logh hain blkay aik hn😁tw hum donon nay hi isay zindghi kay akhri pall tk lay kay jana. Tw jan hmay b chahia aik dosry ki galtion ko maaf kr kay hmesha pass rhny ka jwaaz dhoondhain🤝 <br><br>
+
+        میں کیا کہوں کہ مجھے صبر کیوں نہیں آتا<br>
+        میں کیا کروں کہ تجھے دیکھنے کی عادت ہے<br><br>
+
+        Tashweeb <br>
+        Main dunya chord doon ga lakin apko nahi janay doon ga👩‍❤️‍👨 <br>
+        دنیا کو شاندار کا مطلب نہیں پتہ <br>
+        مطلب ہمارے یار کا مطلب نہیں پتہ 😌<br><br>
+
+        Tashweeb <br>
+        Dunya ki sab khoobsoorti aik tarf or ap aik tarf. Baki sab apkay samny maand parh jata. Ap apka say jurra sab kuch mujy mahboob hai😚😚😚 <br><br>
+
+        اچھا خاصا بیٹھے بیٹھے گم ہو جاتا ہوں<br>
+        اب میں اکثر میں نہیں رہتا تم ہوں جاتا ہوں😍😁<br><br>
+
+        Tashweeb ,My Zoja <br>
+        I loveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee🤝eeeeeeeeeeeeeeeeeeeeeeeeeee💋eeeeeeeeeeeeeeeeeeeeeeeee😙eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee💋 you  so muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhbhbhhhhhhhhhhhhhh  TASHWEEB😭 <br><br>
+
+        Noman lovesssssssssssssssssssssssssssssss😘sssssssssssssssssssssssssssss😍ssssssssssssssss😙sssssssssssssssssssssss💋ssssssssssssssssss🥳sssssssssssssssssssssssssssssss you alot TASHWEEB jan <br><br>
+
+        I love you Tashweeebbbbbbbbbbbbbbbbbb🤝bbbbbbbbbbbbbbbbbbbbbbbbbbbb😙bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb😘bbbbbbbbbbbbbbbbbbbbbb💋bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb🙆bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb💃🏻bbbbbbbbbbbbbbbbbbbbbbbbbb❤️<br><br>
+
+        میں اپنے دونوں طرف ایک سا ہوں تیرے لیے <br>
+        کسی سے شرط لگا پھر مجھے اچھال کے دیکھ<br>
+        میں اپنے پاؤں کے ناخن سے سر کے بالوں تک<br>
+        فقط تیرا ہوں کہیں سے بھی کھول کھال کے دیکھ<br><br>
+
+        Mai ilaania torr pay aj apki kaid mai ata hon😁is kaidi ko hmasha apnay pinjray mai kaid rkhiay ga💃🏻 <br><br>
+
+        Mari jan Happy birthday 🎂🥳Yay din hum har saal isi tra sath dakhan ga Ameen <br><br>
+
+        Happy birthday mara bacha <br>
+        Happy birthday mara bacha <br>
+        Happy birthday mara bacha <br><br><br>
+
+        Tashweeb ❤️ Noman <br><br>
+        <strong style="color: var(--accent-gold);">فقط آپ کا شوہر،<br>نعمان 💕</strong>
+      </p>
+      <div style="text-align: center; margin-top: 20px;">
+        <button class="btn" onclick="closeModal()">Mari jan yay sab words mari taraf sa kabool frmaiay. <br> ab back aa kar apna surprise dobara dakh leejeeia 😁 ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const SECRET_CODE = "121086";
+    const bgMusic = document.getElementById('bg-music');
+    const visualizer = document.getElementById('visualizer');
+    let isAudioPlayingBeforeVideo = false;
+
+    /* Synchronize Audio with Video Playback */
+    const videos = document.querySelectorAll('.sync-video');
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        if (!bgMusic.paused) {
+          isAudioPlayingBeforeVideo = true;
+          bgMusic.pause();
+          visualizer.classList.remove('playing');
+          document.getElementById('musicText').innerText = "Music: Paused";
+        }
+      });
+
+      video.addEventListener('pause', () => {
+        if (isAudioPlayingBeforeVideo) {
+          bgMusic.play();
+          visualizer.classList.add('playing');
+          document.getElementById('musicText').innerText = "Music: ON";
+        }
+      });
+
+      video.addEventListener('ended', () => {
+        if (isAudioPlayingBeforeVideo) {
+          bgMusic.play();
+          visualizer.classList.add('playing');
+          document.getElementById('musicText').innerText = "Music: ON";
+        }
+      });
+    });
+
+    /* Natural Floating Background Elements */
+    const realAssets = [
+      { url: 'images/ballons.png', sizeRatio: 2.2, isPetal: true },
+      { url: 'images/balon.png', sizeRatio: 3.3, isPetal: true },
+      { url: 'images/haedi..png', sizeRatio: 3.3, isPetal: true },
+      { url: 'images/red-rose.png', sizeRatio: 1.6, isPetal: false },
+      { url: 'images/ummah.png', sizeRatio: 1.8, isPetal: false },
+      { url: 'images/red-rose.png', sizeRatio: 2.4, isPetal: false },
+      { url: 'images/cutoo.png', sizeRatio: 3.3, isPetal: false }
+    ];
+
+    const bgContainer = document.getElementById('bgDecorations');
+
+    function initRealNaturalDecorations() {
+      for (let i = 0; i < 60; i++) {
+        const item = realAssets[Math.floor(Math.random() * realAssets.length)];
+        const img = document.createElement('img');
+        img.className = 'real-element';
+        img.src = item.url;
+        
+        const baseSize = item.isPetal ? (Math.random() * 25 + 25) : (Math.random() * 40 + 45);
+        const finalSize = baseSize * item.sizeRatio;
+        const leftPos = Math.random() * 95;
+        const duration = item.isPetal ? (Math.random() * 7 + 8) : (Math.random() * 8 + 10);
+        const delay = Math.random() * 10;
+        const swayDist = (Math.random() - 0.5) * 140;
+        const swayRot = (Math.random() - 0.5) * 360;
+        const maxOp = Math.random() * 0.35 + 0.65;
+
+        img.style.left = `${leftPos}vw`;
+        img.style.width = `${finalSize}px`;
+        img.style.animationDuration = `${duration}s`;
+        img.style.animationDelay = `${delay}s`;
+        img.style.setProperty('--sway-distance', `${swayDist}px`);
+        img.style.setProperty('--sway-rotation', `${swayRot}deg`);
+        img.style.setProperty('--max-opacity', maxOp);
+
+        if (Math.random() > 0.5) {
+          img.style.filter = `blur(${Math.random() * 2 + 1}px) drop-shadow(0 4px 10px rgba(0,0,0,0.5))`;
+        } else {
+          img.style.filter = 'drop-shadow(0 4px 12px rgba(0,0,0,0.6))';
+        }
+
+        bgContainer.appendChild(img);
+      }
+    }
+
+    initRealNaturalDecorations();
+
+    function createClickHeart(e) {
+      const heart = document.createElement('div');
+      heart.className = 'click-heart';
+      heart.innerHTML = '💖';
+      heart.style.left = `${e.clientX - 12}px`;
+      heart.style.top = `${e.clientY - 12}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    }
+
+    /* Passcode Unlock & Grand Spark Opening Launch */
+    function checkPasscode() {
+      const input = document.getElementById('passcode').value;
+      const errorMsg = document.getElementById('error-msg');
+
+      if (input === SECRET_CODE) {
+        errorMsg.style.display = "none";
+        
+        // Trigger Explosive Grand Spark Effect
+        triggerGrandSparkOpening();
+
+        setTimeout(() => {
+          nextStep(2);
+          startCountdown();
+        }, 1200);
+
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+
+    function triggerGrandSparkOpening() {
+      const sparkHeart = document.getElementById('grandSparkHeart');
+      sparkHeart.style.display = "block";
+
+      // Firework Cannon Bursts
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 8,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0 },
+          colors: ['#f5d07a', '#ff758f', '#e63956']
+        });
+        confetti({
+          particleCount: 8,
+          angle: 120,
+          spread: 70,
+          origin: { x: 1 },
+          colors: ['#f5d07a', '#ff758f', '#e63956']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+
+    /* 5-Second Countdown Controller */
+    function startCountdown() {
+      let timeLeft = 5;
+      const timerElem = document.getElementById('timer-number');
+      
+      const countdownInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          timerElem.innerText = timeLeft;
+        } else {
+          clearInterval(countdownInterval);
+          bgMusic.play().then(() => {
+            document.getElementById('musicText').innerText = "Music: ON";
+            visualizer.classList.add('playing');
+          }).catch(() => {});
+          
+          confetti({ particleCount: 220, spread: 100, origin: { y: 0.6 } });
+          nextStep(3);
+        }
+      }, 1000);
+    }
+
+    function toggleMusic() {
+      const text = document.getElementById('musicText');
+      if (bgMusic.paused) {
+        bgMusic.play();
+        text.innerText = "Music: ON";
+        visualizer.classList.add('playing');
+      } else {
+        bgMusic.pause();
+        text.innerText = "Music: OFF";
+        visualizer.classList.remove('playing');
+      }
+    }
+
+    const stepTexts = {
+      3: "واہ جی میری جان نے درست کوڈ لگایا! 🥳\nآج ساڈے یار، ساڈے دل دے چین دا برتھ ڈے ہے۔ \nنعمان آپ سے بے حد محبت کرتا ہے۔ ❤️",
+      4: "Tashweeb dakhiay hum sath main kitny piaray lgty \nyara maray pass aisay hi rhna \nmai waada karta ap ko khush rkhny kay leeia akhri hadd tk jawn ga ",
+      5: "Yara yaad hai kasay hum sara din ghomty thay\n yay dakh yar kasay khail rhy\n abhi hum 3 mahinay vactaion kay ghr guzaar rhy \nlakin yay yaadan hi hain jo zindha rkhay hooi hn\nisi tra hmesha apnay har aik pall ko yaadghaar bnain ga Jan ✨",
+      6: "Babo aj apki birthday hai or aj apko yay surprise day  rha lakin \n Waada mara kay jis tra in videos main ap muskra rhi is tra \nhmesha muskraata rkhon ga or aisay surprises deta rhon ga \nمسکراتے رہیں میری جان! 😊",
+      7: "Tashweeb ap mari dunya mari kul kaainat ho or mujy har aik say ziada azeez ho\n Hum aisay hi hmesha mastian kran ga  Ahaa\nآپ ہمیشہ میری دنیا رہیں گی! ❤️"
+    };
+
+    const finalLinesData = [
+      { type: 'text', text: "🌺Aj mari jan ka birthday or mara dil kr rha pori dunya fataaa kr kay apkay kadmon mai nichawar kr doon🌺" },
+      { type: 'text', text: "Tashweeb aik aik lamha teri yaad main rhta mara bacha hai tuu, mai wo maa ho teri jo apny bachay kohar pall apny seeny sa lghaai rkhti✨" },
+      { type: 'image', url: 'images/sheeba.png' },
+      { type: 'text', text: " My diamond        Hmesha hum donon sath aik ghr main rhan  AMEEN 🤲💖" },
+      { type: 'text', text: "Umahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh 🌹" },
+      { type: 'image', url: 'images/smiling.png' },
+      { type: 'text', text: "Happy Birthday once again my jannat! Always remain mine! 🎉💕" }
+    ];
+
+    let typewriterTimeout;
+    function typeWriterEffect(elementId, text) {
+      clearTimeout(typewriterTimeout);
+      const elem = document.getElementById(elementId);
+      if(!elem) return;
+      elem.innerText = "";
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          elem.innerText += text.charAt(i);
+          i++;
+          typewriterTimeout = setTimeout(type, 35);
+        }
+      }
+      type();
+    }
+
+    function nextStep(stepNumber) {
+      document.querySelectorAll('.step').forEach(step => {
+        step.classList.remove('active');
+      });
+      
+      const targetStep = document.getElementById(`step-${stepNumber}`);
+      if(targetStep) {
+        targetStep.classList.add('active');
+      }
+
+      currentStep = stepNumber;
+
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        if (index + 1 === stepNumber) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+
+      if (stepTexts[stepNumber]) {
+        typeWriterEffect(`typewriter-${stepNumber}`, stepTexts[stepNumber]);
+      }
+
+      if (stepNumber === 8) {
+        buildStep8Content();
+      }
+
+      document.querySelectorAll('video').forEach(v => v.pause());
+    }
+
+    function buildStep8Content() {
+      const container = document.getElementById('line-by-line-container');
+      if(!container || container.children.length > 0) return;
+
+      finalLinesData.forEach(item => {
+        if (item.type === 'text') {
+          const p = document.createElement('p');
+          p.style.margin = "12px 0";
+          p.style.fontSize = "16px";
+          p.style.color = "var(--text-sub)";
+          p.innerText = item.text;
+          container.appendChild(p);
+        } else if (item.type === 'image') {
+          const div = document.createElement('div');
+          div.className = "inline-img-frame";
+          const img = document.createElement('img');
+          img.src = item.url;
+          img.alt = "Special Memory";
+          div.appendChild(img);
+          container.appendChild(div);
+        }
+      });
+    }
+
+    /* Cake Interactive Functions */
+    function blowCandles() {
+      document.getElementById('flame1').classList.add('off');
+      document.getElementById('flame2').classList.add('off');
+      document.getElementById('flame3').classList.add('off');
+      document.getElementById('cakeStatusText').innerText = "واہ جی! تمام موم بتیاں بجھ گئیں 🌬️✨ اب کیک کاٹیں!";
+      
+      confetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } });
+    }
+
+    function cutCake() {
+      document.getElementById('sliceLine').style.display = 'block';
+      document.getElementById('cakeStatusText').innerText = "🎉 مبارک ہو! کیک کٹ گیا! Happy Birthday My Love! 💕🎂";
+      
+      finalCelebrate();
+    }
+
+    function openModal() {
+      document.getElementById('letterModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('letterModal').style.display = 'none';
+    }
+
+    function finalCelebrate() {
+      confetti({
+        particleCount: 300,
+        spread: 140,
+        origin: { y: 0.5 }
+      });
+    }
+  </script>
+</body>
+</html>
+
+   
